@@ -16,7 +16,7 @@ app.listen(port, () => {
     console.log(`Server running on port http://localhost:${port}/home`);
 });
 
-app.post('/users', (req, res) => {
-    const user = new UserModel(req.body);
+app.post('/users', async (req, res) => {
+    const user = await new UserModel(req.body);
     res.status(201).json(user);
 });

@@ -5,6 +5,14 @@ const app = express();
 const port = 8080;
 app.use(express.json());
 
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
+
+app.get('/views/users', async (req, res) => {
+    const users = await UserModel.find({});
+    res.render('index', { users });
+});
+
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
     console.log(`Content-Type: ${req.headers['Content-Type']}`);
